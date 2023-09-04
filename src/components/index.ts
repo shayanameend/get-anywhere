@@ -4,3 +4,6 @@ export { default as Footer } from "@/components/Footer";
 export { default as Header } from "@/components/Header";
 export { default as Logo } from "@/components/Logo";
 export { default as Navbar } from "@/components/Navbar";
+export { default as ProductDetails } from "@/components/ProductDetails";
+export { default as ProductItem } from "@/components/ProductItem";
+export { default as ProductsList } from "@/components/ProductsList";
