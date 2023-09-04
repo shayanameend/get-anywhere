@@ -1,3 +1,9 @@
+import { Navbar } from "@/components";
+
 export default function Header() {
-  return <header>Header</header>;
+  return (
+    <header>
+      <Navbar />
+    </header>
+  );
 }
