@@ -7,3 +7,5 @@ export { default as Navbar } from "@/components/Navbar";
 export { default as ProductDetails } from "@/components/ProductDetails";
 export { default as ProductItem } from "@/components/ProductItem";
 export { default as ProductsList } from "@/components/ProductsList";
+export { default as SignInButton } from "@/components/SignInButton";
+export { default as SignOutButton } from "@/components/SignOutButton";
