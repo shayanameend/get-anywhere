@@ -1,8 +1,12 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/next-auth";
+import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    redirect("/api/auth/signin");
+  }
 
   return (
     <section className="mx-auto max-w-screen-lg px-4 py-12 flex gap-24">
