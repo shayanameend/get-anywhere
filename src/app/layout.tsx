@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { AuthProvider, Header, Footer } from "@/components";
+import { Aside, AuthProvider, Footer, Header } from "@/components";
 
 const inter = Inter({ weight: ["400"], subsets: ["latin"] });
 
@@ -15,6 +15,7 @@ export default function RootLayout({ children }: Props) {
         <AuthProvider>
           <Header />
           <main>{children}</main>
+          <Aside />
           <Footer />
         </AuthProvider>
       </body>

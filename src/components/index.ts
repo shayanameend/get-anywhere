@@ -1,5 +1,10 @@
+export { default as Aside } from "@/components/Aside";
 export { default as AuthProvider } from "@/components/AuthProvider";
+export { default as Cart } from "@/components/Cart";
 export { default as CartButton } from "@/components/CartButton";
+export { default as CartCheckOut } from "@/components/CartCheckOut";
+export { default as CartItems } from "@/components/CartItems";
+export { default as CartSuccess } from "@/components/CartSuccess";
 export { default as Footer } from "@/components/Footer";
 export { default as Header } from "@/components/Header";
 export { default as Logo } from "@/components/Logo";
