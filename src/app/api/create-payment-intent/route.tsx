@@ -3,9 +3,11 @@ import { calculateTotalPrice } from "@/lib/prices";
 import { stripe } from "@/lib/stripe";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/next-auth";
+import { User } from "@prisma/client";
 
 export async function POST(request: NextRequest) {
-  const { user } = (await getServerSession(authOptions)) || {};
+  const { user } =
+    ((await getServerSession(authOptions)) as { user: User }) || {};
   if (!user) {
     return NextResponse.json(
       { message: "User Not Logged In" },
@@ -16,6 +18,7 @@ export async function POST(request: NextRequest) {
   const { cart } = await request.json();
 
   const paymentIntent = await stripe.paymentIntents.create({
+    customer: user.stripeCustomerId!,
     amount: calculateTotalPrice(cart),
     currency: "usd",
     automatic_payment_methods: {
