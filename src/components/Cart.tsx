@@ -11,7 +11,7 @@ export default function Cart() {
 
   return (
     <section
-      className="bg-white lg:w-2/6 p-12 absolute top-0 right-0 h-full"
+      className="bg-white w-full lg:w-2/6 md:w-3/6 p-12 absolute top-0 right-0 h-full"
       onClick={(event) => {
         event.stopPropagation();
       }}
