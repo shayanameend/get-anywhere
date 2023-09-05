@@ -1,3 +1,4 @@
+export { default as AddToCartButton } from "@/components/AddToCartButton";
 export { default as Aside } from "@/components/Aside";
 export { default as AuthProvider } from "@/components/AuthProvider";
 export { default as Cart } from "@/components/Cart";

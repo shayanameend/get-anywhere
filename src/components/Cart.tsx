@@ -21,7 +21,7 @@ export default function Cart() {
           <FaArrowLeftLong />
         </button>
       </header>
-      <main>
+      <main className="py-4">
         {isHyderated && cartStatus === "items" && <CartItems />}
         {isHyderated && cartStatus === "checkout" && <CartCheckOut />}
         {isHyderated && cartStatus === "success" && <CartSuccess />}

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { CartButton, Logo, SignInButton, SignOutButton } from "@/components/";
 
 export default function Navbar() {

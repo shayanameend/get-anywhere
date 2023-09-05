@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
+import { AddToCartButton } from "@/components";
 import { formatPriceUSD } from "@/lib/prices";
 import { ProductType } from "@/lib/products";
+import { CartItemType } from "@/lib/store";
 
 interface Props {
   product: ProductType;
@@ -11,6 +13,7 @@ interface Props {
 
 export default function ProductDetails({ product }: Props) {
   const [quantity, setQuantity] = useState(1);
+  const item: CartItemType = { ...product, quantity };
 
   return (
     <>
@@ -19,7 +22,7 @@ export default function ProductDetails({ product }: Props) {
       <p className="text-indigo-700 font-bold mb-1">
         {formatPriceUSD(product.price * quantity)}
       </p>
-      <div className="mb-3 flex gap-2 items-center">
+      <div className="mb-3 flex gap-2 items-center text-gray-700">
         <button
           onClick={() => {
             setQuantity(quantity > 1 ? quantity - 1 : quantity);
@@ -36,9 +39,7 @@ export default function ProductDetails({ product }: Props) {
           <FaCirclePlus />
         </button>
       </div>
-      <button className="uppercase bg-indigo-700 text-sm text-white rounded-lg border-none px-6 w-full py-3">
-        Add to cart
-      </button>
+      <AddToCartButton item={item} />
     </>
   );
 }
