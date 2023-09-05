@@ -11,7 +11,7 @@ export default async function Dashboard() {
 
   return (
     <section className="mx-auto max-w-screen-lg px-4 py-12 flex flex-col md:flex-row gap-4 md:gap-24">
-      <div className="py-4">
+      <div>
         {session?.user && (
           <>
             <h2 className="mb-1 text-3xl font-medium">{session?.user?.name}</h2>
@@ -20,7 +20,7 @@ export default async function Dashboard() {
           </>
         )}
       </div>
-      <div className="flex-1 py-4">
+      <div className="flex-1">
         <h2 className="font-bold text-3xl text-violet-700">Purchase History</h2>
         <ul></ul>
       </div>
