@@ -11,9 +11,6 @@ export default function Navbar() {
         <li>
           <SignInButton />
         </li>
-        <li>
-          <SignOutButton />
-        </li>
       </ul>
     </nav>
   );

@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/next-auth";
 import { redirect } from "next/navigation";
+import { authOptions } from "@/lib/next-auth";
+import { SignOutButton } from "@/components";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
@@ -9,12 +10,13 @@ export default async function Dashboard() {
   }
 
   return (
-    <section className="mx-auto max-w-screen-lg px-4 py-12 flex gap-24">
+    <section className="mx-auto max-w-screen-lg px-4 py-12 flex flex-col md:flex-row gap-4 md:gap-24">
       <div className="py-4">
         {session?.user && (
           <>
             <h2 className="mb-1 text-3xl font-medium">{session?.user?.name}</h2>
-            <p className="text-xs">{session?.user?.email}</p>
+            <p className="text-xs mb-3">{session?.user?.email}</p>
+            <SignOutButton />
           </>
         )}
       </div>
