@@ -7,7 +7,7 @@ import { useCartStore } from "@/lib/store";
 
 export default function Cart() {
   const isHyderated = useIsHyderated();
-  const { toggleIsCartOpen, cartStatus } = useCartStore();
+  const { toggleIsCartOpen, cartStatus, setCartStatus } = useCartStore();
 
   return (
     <section
@@ -17,11 +17,20 @@ export default function Cart() {
       }}
     >
       <header>
-        <button className="text-xl" onClick={toggleIsCartOpen}>
+        <button
+          className="text-xl"
+          onClick={
+            cartStatus === "items"
+              ? toggleIsCartOpen
+              : () => {
+                  setCartStatus("items");
+                }
+          }
+        >
           <FaArrowLeftLong />
         </button>
       </header>
-      <main className="py-4">
+      <main className="py-4 h-full">
         {isHyderated && cartStatus === "items" && <CartItems />}
         {isHyderated && cartStatus === "checkout" && <CartCheckOut />}
         {isHyderated && cartStatus === "success" && <CartSuccess />}

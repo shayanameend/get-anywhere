@@ -2,22 +2,22 @@
 
 import Image from "next/image";
 import { FaCircleMinus, FaCirclePlus } from "react-icons/fa6";
-import { formatPriceUSD } from "@/lib/prices";
+import { calculateTotalPrice, formatPriceUSD } from "@/lib/prices";
 import { useCartStore } from "@/lib/store";
 
 export default function CartItems() {
-  const { cart, addItem, removeItem } = useCartStore();
+  const { setCartStatus, cart, addItem, removeItem } = useCartStore();
 
   if (cart.length === 0) {
     return (
-      <section className="flex flex-col items-center">
+      <section className="flex flex-col items-center justify-center h-full">
         <h2>No Items</h2>
       </section>
     );
   }
 
   return (
-    <section>
+    <section className="overflow-y-auto">
       <ul>
         {cart.map((cartItem) => {
           return (
@@ -61,14 +61,14 @@ export default function CartItems() {
         })}
       </ul>
       <p className="mb-3 text-sm pl-1">
-        Total Price:{" "}
-        {formatPriceUSD(
-          cart.reduce((accumulator, cartItem) => {
-            return accumulator + cartItem.price * cartItem.quantity;
-          }, 0)
-        )}
+        Total Price: {formatPriceUSD(calculateTotalPrice(cart))}
       </p>
-      <button className="uppercase bg-indigo-700 text-sm text-white rounded-lg px-6 w-full py-3">
+      <button
+        className="uppercase bg-indigo-700 text-sm text-white rounded-lg px-6 w-full py-3"
+        onClick={() => {
+          setCartStatus("checkout");
+        }}
+      >
         Checkout
       </button>
     </section>

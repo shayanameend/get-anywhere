@@ -7,10 +7,6 @@ import { signIn, useSession } from "next-auth/react";
 export default function SignInButton() {
   const { data: sesssion, status } = useSession();
 
-  if (status === "loading") {
-    return <></>;
-  }
-
   if (status === "unauthenticated") {
     return (
       <button
@@ -24,15 +20,19 @@ export default function SignInButton() {
     );
   }
 
-  return (
-    <Link href="/dashboard">
-      <Image
-        className="rounded-full"
-        src={sesssion?.user?.image!}
-        alt={sesssion?.user?.name!}
-        width={32}
-        height={32}
-      />
-    </Link>
-  );
+  if (status === "authenticated") {
+    return (
+      <Link href="/dashboard">
+        <Image
+          className="rounded-full"
+          src={sesssion?.user?.image!}
+          alt={sesssion?.user?.name!}
+          width={32}
+          height={32}
+        />
+      </Link>
+    );
+  }
+
+  return <></>;
 }
