@@ -18,7 +18,7 @@ export default function CheckOutForm({ clientSecret }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-  const { setCartStatus, cart, clearCart } = useCartStore();
+  const { setCartStatus, cart } = useCartStore();
 
   useEffect(() => {
     if (!stripe) {
@@ -46,7 +46,6 @@ export default function CheckOutForm({ clientSecret }: Props) {
 
     if (!error) {
       setCartStatus("success");
-      clearCart();
     }
 
     setIsLoading(false);

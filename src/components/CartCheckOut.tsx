@@ -12,10 +12,10 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE!);
 export default function CartCheckOut() {
   const router = useRouter();
   const [clientSecret, setCientSecret] = useState("");
-  const { cart, paymentIntentId } = useCartStore();
+  const { cart, paymentIntentId, setPaymentIntentId } = useCartStore();
 
   useEffect(() => {
-    fetch("/api/create-payment-intent", {
+    fetch("/api/payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ cart, paymentIntentId }),
@@ -27,7 +27,10 @@ export default function CartCheckOut() {
 
         return response.json();
       })
-      .then((data) => setCientSecret(data.paymentIntent.client_secret));
+      .then((data) => {
+        setCientSecret(data.paymentIntent.client_secret);
+        setPaymentIntentId(data.paymentIntent.id);
+      });
   }, []);
 
   const options: StripeElementsOptions = {
