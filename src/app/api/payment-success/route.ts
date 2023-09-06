@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 
     await prisma.order.update({
       where: { id: order.id },
-      data: { status: "success" },
+      data: { status: "complete" },
     });
 
     return NextResponse.json({});
