@@ -15,6 +15,8 @@ interface StoreType {
   addItem: (item: CartItemType) => void;
   removeItem: (item: CartItemType) => void;
   clearCart: () => void;
+  paymentIntentId: string;
+  setPaymentIntentId: (newId: string) => void;
 }
 
 export const useCartStore = create<StoreType>()(
@@ -79,6 +81,12 @@ export const useCartStore = create<StoreType>()(
         clearCart() {
           set(() => {
             return { cart: [] };
+          });
+        },
+        paymentIntentId: "",
+        setPaymentIntentId(newId) {
+          set(() => {
+            return { paymentIntentId: newId };
           });
         },
       };

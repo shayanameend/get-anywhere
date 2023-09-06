@@ -12,13 +12,13 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE!);
 export default function CartCheckOut() {
   const router = useRouter();
   const [clientSecret, setCientSecret] = useState("");
-  const { cart } = useCartStore();
+  const { cart, paymentIntentId } = useCartStore();
 
   useEffect(() => {
     fetch("/api/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cart }),
+      body: JSON.stringify({ cart, paymentIntentId }),
     })
       .then((response) => {
         if (response.status === 403) {
