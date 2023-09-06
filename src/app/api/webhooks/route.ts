@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { stripe, StripeCharge, StripeEvent } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 
-export default async function POST(request: NextRequest) {
+export async function POST(request: NextRequest) {
   const signature = request.headers.get("stripe-signature");
 
   let event: StripeEvent;
