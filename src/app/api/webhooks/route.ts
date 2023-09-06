@@ -5,8 +5,6 @@ import { prisma } from "@/lib/prisma";
 export async function POST(request: NextRequest) {
   const signature = request.headers.get("stripe-signature");
 
-  console.log(signature);
-
   let event: StripeEvent;
 
   try {
@@ -18,7 +16,7 @@ export async function POST(request: NextRequest) {
   } catch (err: any) {
     console.log(`⚠️  Webhook signature verification failed.`, err.message);
 
-    return NextResponse.json({}, { status: 400 });
+    return NextResponse.json({ signature }, { status: 400 });
   }
 
   switch (event.type) {
