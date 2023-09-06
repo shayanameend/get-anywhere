@@ -5,6 +5,8 @@ import { prisma } from "@/lib/prisma";
 export async function POST(request: NextRequest) {
   const signature = request.headers.get("stripe-signature");
 
+  console.log(signature);
+
   let event: StripeEvent;
 
   try {
