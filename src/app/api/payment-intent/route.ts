@@ -10,12 +10,12 @@ import { CartItemType } from "@/lib/store";
 export async function POST(request: NextRequest) {
   const { user } =
     ((await getServerSession(authOptions)) as { user: User }) || {};
-  if (!user) {
-    return NextResponse.json(
-      { message: "User Not Logged In" },
-      { status: 403 }
-    );
-  }
+  // if (!user) {
+  //   return NextResponse.json(
+  //     { message: "User Not Logged In" },
+  //     { status: 403 }
+  //   );
+  // }
 
   let { cart, paymentIntentId } = (await request.json()) as {
     cart: CartItemType[];
